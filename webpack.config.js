@@ -31,7 +31,7 @@ module.exports = {
         loaders: ["style-loader", "css-loader", "sass-loader"]
       },
       {
-        test: /\.(png|woff|woff2|eot|ttf|svg)$/,
+        test: /\.(png|woff|woff2|eot|ttf|svg|jpg)$/,
         loader: 'url-loader?limit=100000'
       }
     ]
@@ -40,7 +40,7 @@ module.exports = {
     port: 3000,
     open: true,
     proxy: {
-      '/api': 'http://localhost:8080'
+      '/api': 'http://localhost:8888'
     }
   },
   plugins: [

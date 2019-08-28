@@ -1,0 +1,20 @@
+$primary-font-color-light: #ffffff;
+$primary-font-color-dark: #000000;
+$secondary-font-color-dark: #606060;
+
+$primary-font: 'Roboto', sans-serif;
+$header-font: 'Teko', sans-serif;
+
+$primary-color: #F2F2F2;
+$secondary-color: #D4E9D2;
+$tertiary-color: #656565;
+
+$header-font-size: 4rem;
+$subheader-font-size: 0;
+$large-paragraph-font-size: 1.7rem;
+$small-paragraph-font-size: 1.4rem;
+
+@mixin header {
+  font-size: $header-font-size;
+  font-family: $header-font;
+}
