@@ -51,7 +51,7 @@ class CustomNavbar extends Component {
           <img className="hamburger-menu-icon"
                onClick={this.expandNav}
           />
-          <Link to="/" className="nav-item">MassDrop</Link>
+          <Link to="/" className="nav-item">AudioPlug</Link>
         </div>
         <div className="expanded">
           <Link to="/our-story" className="expanded__item">OUR STORY</Link>

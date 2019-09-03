@@ -1,4 +1,5 @@
 $primary-font-color-light: #ffffff;
+$secondary-font-color-light: #CDCDCD;
 $primary-font-color-dark: #000000;
 $secondary-font-color-dark: #606060;
 
@@ -10,11 +11,51 @@ $secondary-color: #D4E9D2;
 $tertiary-color: #656565;
 
 $header-font-size: 4rem;
-$subheader-font-size: 0;
+$subheader-font-size: 2rem;
 $large-paragraph-font-size: 1.7rem;
-$small-paragraph-font-size: 1.4rem;
+$small-paragraph-font-size: 1.2rem;
+
+$background-dark: #201D1D;
 
 @mixin header {
   font-size: $header-font-size;
   font-family: $header-font;
+}
+
+@mixin header-light {
+  font-family: $header-font;
+  font-size: $header-font-size;
+  color: $primary-font-color-light;
+}
+
+@mixin header-dark {
+  font-family: $header-font;
+  font-size: $header-font-size;
+  color: $primary-font-color-dark;
+}
+
+@mixin subheader-light {
+  font-family: $header-font;
+  font-size: $subheader-font-size;
+  color: $primary-font-color-light;
+  font-weight: 400;
+}
+
+@mixin subheader-dark {
+  font-family: $header-font;
+  font-size: $subheader-font-size;
+  color: $primary-font-color-dark;
+  font-weight: 400;
+}
+
+@mixin small-paragraph-secondary-light {
+  font-family: $primary-font;
+  font-size: $small-paragraph-font-size;
+  color: $secondary-font-color-light;
+}
+
+@mixin small-paragraph-dark {
+  font-family: $primary-font;
+  font-size: $small-paragraph-font-size;
+  color: $primary-font-color-dark;
 }

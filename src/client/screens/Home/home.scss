@@ -4,6 +4,33 @@
   display: flex;
   flex-direction: column;
 
+  .section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    margin-top: 50px;
+    margin-bottom: 50px;
+
+    .shipping__header {
+      width: 500px;
+      margin-bottom: 0;
+    }
+    p {
+      margin-bottom: 40px;
+    }
+  }
+
+  .story-section {
+    flex-direction: row;
+    justify-content: center;
+
+    img {
+      height: 500px;
+
+    }
+  }
+
   .header {
     @include header;
     text-align: left;

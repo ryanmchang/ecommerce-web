@@ -1,7 +1,23 @@
+@import './utilities/variables.scss';
+
 $primary-color: black;
 
 h1 {
   color: $primary-color;
+  font-family: $header-font;
+  @include header-dark;
+}
+
+p {
+  @include small-paragraph-dark;
+}
+
+button {
+  background-color: $background-dark;
+  @include header-light;
+  font-size: 2rem;
+  padding: 10px 20px 10px 20px;
+  border-style: none;
 }
 
 body {

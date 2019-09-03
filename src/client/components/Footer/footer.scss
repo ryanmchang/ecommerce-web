@@ -1,0 +1,33 @@
+@import '../../utilities/variables.scss';
+
+$social-media-dimension: 50px;
+
+.footer-container {
+  display: flex;
+  flex-direction: row;
+  background-color: #201D1D;
+  padding: 30px;
+  justify-content: space-between;
+
+  .footer__group-container {
+    margin: 20px;
+    //text-align: left;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .social-media-icon {
+    height: $social-media-dimension;
+    width: $social-media-dimension;
+    margin: 15px;
+  }
+
+  .footer__item {
+    @include small-paragraph-secondary-light;
+  }
+
+  .footer__header {
+    @include subheader-light;
+  }
+}
