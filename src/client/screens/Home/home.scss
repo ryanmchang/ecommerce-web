@@ -1,6 +1,6 @@
 @import '../../utilities/variables.scss';
 
-.home-container {
+.home-page {
   display: flex;
   flex-direction: column;
 
@@ -15,20 +15,36 @@
     .shipping__header {
       width: 500px;
       margin-bottom: 0;
+      line-height: 1;
     }
     p {
       margin-bottom: 40px;
+    }
+  }
+  .all-heaphones-section {
+    margin-top: 70px;
+    margin-bottom: 50px;
+    .all_headphones-header {
+      margin-bottom: 0px;
+      line-height: 1;
+      width: 500px;
     }
   }
 
   .story-section {
     flex-direction: row;
     justify-content: center;
-
     img {
       height: 500px;
-
     }
+
+    .story-title {
+      //text-align: left;
+      font-family: $primary-font;
+      font-size: $small-paragraph-font-size;
+      font-weight: bold;
+    }
+
   }
 
   .header {
@@ -39,7 +55,9 @@
 
   .top-row {
     display: flex;
+    align-items: center;
+    justify-content: center;
     flex-direction: row;
-    padding: 0 30px 0 30px;
+    //padding: 0 30px 0 30px;
   }
 }
