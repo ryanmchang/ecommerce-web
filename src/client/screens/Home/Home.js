@@ -15,7 +15,7 @@ import kidHeadphone from '../../assets/pictures/kid_headphone.png';
 import simpleHeadphone from '../../assets/pictures/simple_headphone.png';
 
 
-export default class Home extends Component {
+class Home extends Component {
 
   constructor(props) {
     super(props);
@@ -41,7 +41,6 @@ export default class Home extends Component {
 
 
   routeAllHeadphones = () => {
-    console.log("I work!");
     this.props.history.push('/all-headphones');
   }
 
@@ -92,3 +91,5 @@ export default class Home extends Component {
     );
   }
 }
+
+export default withRouter(Home);

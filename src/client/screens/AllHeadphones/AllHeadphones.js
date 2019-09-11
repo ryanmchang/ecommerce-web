@@ -4,9 +4,10 @@ import CustomNavbar from '../../components/CustomNavbar/CustomNavbar.js';
 import Jumbotron from '../../components/Jumbotron/Jumbotron.js';
 import Item from '../../components/Item/Item.js';
 import Footer from  '../../components/Footer/Footer.js';
+import ProductFilter from '../../components/ProductFilter/ProductFilter.js';
+import {withRouter } from 'react-router-dom';
 
-
-export default class AllHeadphones extends Component {
+class AllHeadphones extends Component {
 
   constructor(props) {
     super(props);
@@ -15,19 +16,11 @@ export default class AllHeadphones extends Component {
     }
   }
 
-  componentDidMount() {
-    this.fetchExample();
-  }
+  componentDidMount() {}
 
-  fetchExample = async () => {
-    const topContext = this;
-    let name = await fetch('/api/example')
-    .then(function(res) {
-      return res.json();
-    })
-    .then(function(data) {
-      topContext.setState({products: data});
-    });
+
+  callbackItems = (data) => {
+    this.setState({products: data});
   }
 
 
@@ -35,9 +28,19 @@ export default class AllHeadphones extends Component {
     return (
       <div className="all-headphones-page">
         <CustomNavbar backgroundOn={true}/>
-        <h1>HEADPHONES</h1>
+        <div className="product-display">
+          <ProductFilter parentCallback={this.callbackItems}/>
+          <div className="product-grid">
+            { this.state.products.map(product =>
+              <Item title={product.title} image={product.image} price={product.price} />
+            )}
+          </div>
+        </div>
         <Footer/>
       </div>
     );
   }
 }
+
+
+export default withRouter(AllHeadphones);

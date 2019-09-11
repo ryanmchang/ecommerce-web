@@ -1,0 +1,30 @@
+@import '../../utilities/variables.scss';
+
+.product-filter-container {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  margin-right: 30px;
+  //height: 100%;
+  width: $product-filter-width;
+  padding: 50px 30px 30px 30px;
+
+  overflow-y: scroll;
+  //overflow: hidden;
+  z-index: 1;
+
+  top: 0;
+  bottom: 0;
+}
+
+.category-group {
+  align-self: flex-start;
+  font-weight: bold;
+}
+
+.category {
+  align-self: flex-start;
+  margin: 4px;
+  color: $secondary-font-color-dark;
+  cursor: pointer;
+}

@@ -4,11 +4,12 @@ $nav-height: 100px;
 
 .navbar {
   display: block;
+  position: relative;
+  z-index: 100;
 }
 
 .navbar__top {
   position: absolute;
-  z-index: 10;
   width: 100%;
   display: flex;
   justify-content: center;

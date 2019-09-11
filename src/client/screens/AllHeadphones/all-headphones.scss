@@ -2,4 +2,15 @@
 
 .all-headphones-page {
 
+  .product-display {
+
+    min-height: 100vh;
+
+    .product-grid {
+      justify-items: center;
+      margin-left: calc(#{$product-filter-width} + 60px);
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+    }
+  }
 }
