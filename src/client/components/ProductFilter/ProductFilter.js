@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 
-//import {fetchExample} from '../../utilities/API.js';
-
 export default class ProductFilter extends Component {
 
   constructor(props) {
@@ -9,17 +7,23 @@ export default class ProductFilter extends Component {
     this.state = {
       products: [],
     }
+    this.container = React.createRef();
   }
 
   componentDidMount() {
     this.fetchTemplate("products/all");
+
+    let mql = window.matchMedia("(min-width: 750px)");
+    this.mqResponse(mql);
+    mql.addListener(this.mqResponse);
   }
 
+//Send back the data we received to the parent component
   sendData = () => {
     this.props.parentCallback(this.state.products);
   }
 
-
+//Get require for products; specify which products with route
   fetchTemplate = async (route) => {
     console.log(`/api/${route}`);
     const topContext = this;
@@ -33,9 +37,16 @@ export default class ProductFilter extends Component {
     });
   }
 
+// Go back to fixed sidebar if screen surpasses size
+  mqResponse = (e) => {
+    if (e.matches) {
+      this.container.current.classList.remove("in-flow");
+    }
+  }
+
   render() {
     return (
-      <div className="product-filter-container">
+      <div className="product-filter-container" ref={this.container}> <div className="inner-container">
         <h1>Shop: All Headphones</h1>
         <p className="category-group">Design</p>
         <p className="category" onClick={()=>{this.fetchTemplate("products/design?design=open")}}>Open</p>
@@ -52,6 +63,7 @@ export default class ProductFilter extends Component {
         <p className="category" onClick={()=>{this.fetchTemplate("products/price?min=100&max=200")}}>$100-$200</p>
         <p className="category" onClick={()=>{this.fetchTemplate("products/price?min=200&max=400")}}>$200-$400</p>
         <p className="category" onClick={()=>{this.fetchTemplate("products/price?min=400&max=100000")}}>$400+</p>
+        </div>
       </div>
     );
   }

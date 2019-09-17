@@ -15,7 +15,7 @@ $image-dimension: 330px;
 
   .item__image {
     height: $image-dimension;
-    width: $image-dimension;
+    max-width: $image-dimension;
   }
 
   .item__row1 {
@@ -29,7 +29,7 @@ $image-dimension: 330px;
     .item__title {
       @include itemText;
       text-align: left;
-      margin-top: 0;
+      margin-top: 5px;
     }
 
     .cart-icon {
@@ -44,6 +44,21 @@ $image-dimension: 330px;
     .item__price {
       @include itemText;
       color: $secondary-font-color-dark;
+    }
+  }
+}
+
+
+@media only screen and (max-width: 780px) {
+  .item-super {
+    display: flex;
+    justify-content: center;
+    .item-container {
+      width:auto;
+      max-width: $image-dimension;
+      .item__image {
+        object-fit: contain;
+      }
     }
   }
 }

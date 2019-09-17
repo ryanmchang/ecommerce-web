@@ -15,7 +15,7 @@ export default class Item extends Component {
       backgroundImage: `url(${this.props.image})`,
     }
     return (
-      <div className="item-container">
+      <div className="item-super"><div className="item-container">
         <img className="item__image" src={this.props.image} alt=""/>
         <div className="item__row1">
           <h1 className="item__title">{this.props.title}</h1>
@@ -24,7 +24,7 @@ export default class Item extends Component {
         <div className="item__row2">
           <h1 className="item__price">{`$${this.props.price}`}</h1>
         </div>
-      </div>
+      </div></div>
     );
   }
 }

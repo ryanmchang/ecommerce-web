@@ -31,9 +31,23 @@ module.exports = {
         test: /\.scss$/,
         loaders: ["style-loader", "css-loader", "sass-loader"]
       },
-      {
+      /*{
         test: /\.(png|woff|woff2|eot|ttf|svg|jpg)$/,
         loader: 'url-loader?limit=100000'
+      }*/
+      {
+
+        test: /\.(png|jpg|woff|woff2|eot|ttf|svg)$/,
+
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+                name: '[path][name].[ext]',
+                useRelativePaths: true,
+            }
+          }
+        ]
       }
     ]
   },

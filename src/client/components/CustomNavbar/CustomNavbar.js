@@ -4,6 +4,9 @@ import {withRouter } from 'react-router-dom';
 
 
 class CustomNavbar extends Component {
+  constructor(props) {
+    super(props);
+  }
 
   componentDidMount() {
     this.setBackground();
@@ -43,6 +46,7 @@ class CustomNavbar extends Component {
   routeHome = () => {
     this.props.history.push('/');
   }
+
 
   render() {
     return (

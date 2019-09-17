@@ -26,7 +26,7 @@ $mobile-logo-font-size: 6.7rem;
   text-align: center;
   color: white;
   @include header;
-  width: 500px;
+  max-width: 500px;
 }
 
 .slide1 {

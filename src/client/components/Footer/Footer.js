@@ -4,13 +4,18 @@ import instagram from '../../assets/icons/instagram.png';
 import twitter from '../../assets/icons/twitter.png';
 
 export default class Footer extends Component {
+  constructor(props) {
+    super(props);
+    this.container = React.createRef();
+  }
 
   componentDidMount() {
+
   }
 
   render() {
     return (
-      <div className="footer-container">
+      <div className="footer-container" ref={this.container}>
         <div className="footer__group-container">
           <h1 className="footer__header">AudioPlug</h1>
         </div>

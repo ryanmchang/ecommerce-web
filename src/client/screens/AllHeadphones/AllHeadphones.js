@@ -14,29 +14,75 @@ class AllHeadphones extends Component {
     this.state = {
       products: [],
     }
+
+    this.footer = React.createRef();
+    this.page = React.createRef();
+    this.productDisplay = React.createRef();
+    this.filter = React.createRef();
+    this.navbar = React.createRef();
   }
 
-  componentDidMount() {}
+  componentDidMount() {
+    window.addEventListener("scroll", this.handleScroll);
+  }
 
+  componentWillUnmount() {
+    window.removeEventListener("scroll", this.handleScroll);
+  }
 
   callbackItems = (data) => {
     this.setState({products: data});
   }
 
+//handles pushing the sidebar up if needed so it won't collide with the footer
+  handleScroll = () => {
+    let bottomEdge = window.pageYOffset + window.innerHeight;
+
+    let footerHeight = this.footer.current.container.current.clientHeight;
+    let pageHeight = this.page.current.clientHeight;
+    let footerCoord = pageHeight - footerHeight;
+
+    let filter = this.filter.current.container.current;
+    let trigger = footerCoord - bottomEdge;
+
+    let marginTop = footerCoord - filter.clientHeight;
+
+    if (trigger <= 0) {
+      filter.classList.add('bottom');
+      filter.style.marginTop = `${marginTop}px`;
+    } else {
+      filter.classList.remove('bottom');
+      filter.style.marginTop = '0px';
+    }
+  }
+
+
+//button toggles showing filter or not
+  showFilter = () => {
+    let filterContainer = this.filter.current.container.current;
+
+    if (!filterContainer.classList.contains('in-flow')) {
+      filterContainer.classList.add('in-flow');
+    } else {
+      filterContainer.classList.remove('in-flow');
+    }
+  }
+
 
   render() {
     return (
-      <div className="all-headphones-page">
-        <CustomNavbar backgroundOn={true}/>
-        <div className="product-display">
-          <ProductFilter parentCallback={this.callbackItems}/>
+      <div className="all-headphones-page" ref={this.page}>
+        <CustomNavbar backgroundOn={true} ref={this.navbar}/>
+        <button onClick={this.showFilter}>Filter</button>
+        <div className="product-display" ref={this.productDisplay}>
+          <ProductFilter parentCallback={this.callbackItems} ref={this.filter}/>
           <div className="product-grid">
             { this.state.products.map(product =>
               <Item title={product.title} image={product.image} price={product.price} />
             )}
           </div>
         </div>
-        <Footer/>
+        <Footer ref={this.footer}/>
       </div>
     );
   }

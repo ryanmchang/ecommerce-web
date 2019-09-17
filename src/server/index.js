@@ -27,6 +27,19 @@ app.get('/api/products/all', function (req, res) {
   });
 })
 
+app.get('/api/products/editorspick', function (req, res) {
+  Product.find({
+    editors_pick: true
+  }, function (err, products) {
+    if (err) {
+      console.log(err);
+    } else {
+      res.json(products);
+    }
+  });
+})
+
+
 app.get('/api/products/price', function (req, res) {
   Product.find({
     $and : [

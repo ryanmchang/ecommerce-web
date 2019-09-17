@@ -12,8 +12,13 @@
     margin-top: 50px;
     margin-bottom: 50px;
 
+    .shipping__img {
+      max-width: 100%;
+      margin: 20px;
+    }
+
     .shipping__header {
-      width: 500px;
+      max-width: 500px;
       margin-bottom: 0;
       line-height: 1;
     }
@@ -27,22 +32,34 @@
     .all_headphones-header {
       margin-bottom: 0px;
       line-height: 1;
-      width: 500px;
+      max-width: 500px;
     }
   }
 
   .story-section {
     flex-direction: row;
+    flex-wrap: wrap;
     justify-content: center;
-    img {
+    .story-container {
+      display: flex;
+      flex-direction: column;
       height: 500px;
-    }
+      width: 500px;
+      margin: 50px 20px 50px 20px;
 
-    .story-title {
-      //text-align: left;
-      font-family: $primary-font;
-      font-size: $small-paragraph-font-size;
-      font-weight: bold;
+
+      img {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+      }
+
+      .story-title {
+        //text-align: left;
+        font-family: $primary-font;
+        font-size: $small-paragraph-font-size;
+        font-weight: bold;
+      }
     }
 
   }

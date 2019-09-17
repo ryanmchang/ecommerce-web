@@ -4,16 +4,14 @@ import Carousel from 'nuka-carousel';
 
 export default class Jumbotron extends Component {
 
-  componentDidMount() {
-    var self = this;
-    window.onscroll = function() {
-      parallax(".jumbotron__title", 15, "Y");
-    }
-  }
+  componentDidMount() {}
 
   render() {
     return (
-      <Carousel heightMode='first'>
+      <Carousel
+        heightMode='first'
+        renderBottomCenterControls
+      >
         <div className="slide1">
           <div className="jumbotron__text-container">
             BACK IN ANY COLOR YOU LIKE

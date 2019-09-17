@@ -21,27 +21,60 @@ class Home extends Component {
     super(props);
     this.state = {
       products: [],
+      itemsToShow: 3,
     }
   }
 
   componentDidMount() {
-    this.fetchExample();
+    this.fetchTemplate();
+    console.log("Mounted");
+
+    let mqls = [
+      window.matchMedia("(max-width: 780px)"),
+      window.matchMedia("(max-width: 1200px)")
+    ];
+    for (let i=0; i<mqls.length; i++) {
+      this.mqResponse(mqls[i]);
+      mqls[i].addListener(this.mqResponse);
+    }
   }
 
-  fetchExample = async () => {
+  mqResponse = (e) => {
+    let mqls = [
+      window.matchMedia("(max-width: 780px)"),
+      window.matchMedia("(max-width: 1200px)")
+    ];
+
+    if (mqls[0].matches) {
+      this.setState({itemsToShow: 1});
+    }
+    else if (mqls[1].matches) {
+      this.setState({itemsToShow: 2});
+    }
+    else {
+      this.setState({itemsToShow: 3});
+    }
+  }
+
+  fetchTemplate = async () => {
     const topContext = this;
-    let name = await fetch('/api/example')
+    let name = await fetch('/api/products/editorspick')
     .then(function(res) {
       return res.json();
     })
     .then(function(data) {
       topContext.setState({products: data});
     });
+    console.log(topContext.state.products);
   }
 
 
   routeAllHeadphones = () => {
     this.props.history.push('/all-headphones');
+  }
+
+  callbackItems = (data) => {
+    this.setState({products: data});
   }
 
   render() {
@@ -60,8 +93,10 @@ class Home extends Component {
         <div className="top-row">
           <Carousel
             heightMode='first'
-            slidesToShow={3}
-          >
+            initialSlideHeight={600}
+            slidesToShow={this.state.itemsToShow}
+            renderBottomCenterControls
+            >
             { this.state.products.map(product =>
               <Item title={product.title} image={product.image} price={product.price} />
             )}
@@ -69,18 +104,18 @@ class Home extends Component {
         </div>
 
         <div className="section">
-          <img src={packageHand} alt=""/>
+          <img src={packageHand} className="shipping__img"/>
           <h1 className="shipping__header">Upgrade your audio experience instantly</h1>
           <p>Get one day shipping with premium membership</p>
           <button>Sign Up</button>
         </div>
         <div className="story-section section">
           <div className="story-container">
-            <img src={kidHeadphone} alt="" className="thumbnail"/>
+            <img src={kidHeadphone} className="thumbnail"/>
             <p className="story-title">Deepest sound stage yet</p>
           </div>
-          <div>
-            <img src={simpleHeadphone} alt="" className="thumbnail"/>
+          <div className="story-container">
+            <img src={simpleHeadphone} className="thumbnail"/>
             <p className="story-title">Eco-friendly headphones</p>
           </div>
         </div>
