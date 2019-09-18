@@ -1,19 +1,38 @@
 const express = require('express');
 const os = require('os');
-const mongoose = require('mongoose');
+const mongoose = require('mongoose'), Admin = mongoose.mongo.Admin;
+
+const proxyPort = 8888;
 
 const app = express();
 let Product = require("./models/product");
+//specify user,pass,db in connection string
+const connectionString = "mongodb+srv://ryanmchang:llamalazer@" +
+ "cluster0-9rqqv.azure.mongodb.net/main" +
+ "?retryWrites=true&w=majority";
 
 app.use(express.static('dist'));
 
 //Setup ORM for MongoDB
-mongoose.connect('mongodb://localhost/ecommerce_web', {useNewUrlParser: true});
-let db = mongoose.connection;
-db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', function() {
+mongoose.connect(connectionString, { useNewUrlParser: true }).catch(
+    (error) => console.log(JSON.stringify(error))
+);
+let datab = mongoose.connection;
+datab.on('error', console.error.bind(console, 'connection error:'));
+datab.on('open', function() {
   console.log("I am mongoose!");
+  datab.db.listCollections().toArray(function (err, names) {
+        console.log(names);
+        module.exports.Collection = names;
+    });
+    new Admin(datab.db).listDatabases(function(err, result) {
+        console.log('listDatabases succeeded');
+        // database list stored in result.databases
+        var allDatabases = result.databases;
+        console.log(allDatabases);
+    });
 });
+
 
 //api endpoints
 app.get('/api/products/all', function (req, res) {
@@ -24,6 +43,7 @@ app.get('/api/products/all', function (req, res) {
     } else {
       res.json(products);
     }
+    console.log(products);
   });
 })
 
@@ -79,4 +99,4 @@ app.get('/api/products/brand', function (req, res) {
   });
 })
 
-app.listen(process.env.PORT || 8888, () => console.log(`Listening on port ${process.env.PORT || 8888}!`));
+app.listen(process.env.PORT || proxyPort, () => console.log(`Listening on port ${process.env.PORT || proxyPort}!`));
