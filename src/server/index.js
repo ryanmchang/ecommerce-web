@@ -1,10 +1,14 @@
 const express = require('express');
+
 const os = require('os');
 const mongoose = require('mongoose'), Admin = mongoose.mongo.Admin;
 
+const serverless = require('serverless-http');
 const proxyPort = 8888;
 
 const app = express();
+const router = express.Router();
+
 let Product = require("./models/product");
 //specify user,pass,db in connection string
 const connectionString = "mongodb+srv://ryanmchang:llamalazer@" +
@@ -35,7 +39,7 @@ datab.on('open', function() {
 
 
 //api endpoints
-app.get('/api/products/all', function (req, res) {
+router.get('/api/products/all', function (req, res) {
   Product.find({
   }, function (err, products) {
     if (err) {
@@ -47,7 +51,7 @@ app.get('/api/products/all', function (req, res) {
   });
 })
 
-app.get('/api/products/editorspick', function (req, res) {
+router.get('/api/products/editorspick', function (req, res) {
   Product.find({
     editors_pick: true
   }, function (err, products) {
@@ -60,7 +64,7 @@ app.get('/api/products/editorspick', function (req, res) {
 })
 
 
-app.get('/api/products/price', function (req, res) {
+router.get('/api/products/price', function (req, res) {
   Product.find({
     $and : [
       {price: {$gte: req.query.min}},
@@ -75,7 +79,7 @@ app.get('/api/products/price', function (req, res) {
   });
 })
 
-app.get('/api/products/design', function (req, res) {
+router.get('/api/products/design', function (req, res) {
   Product.find({
     design: req.query.design
   }, function (err, products) {
@@ -87,7 +91,7 @@ app.get('/api/products/design', function (req, res) {
   });
 })
 
-app.get('/api/products/brand', function (req, res) {
+router.get('/api/products/brand', function (req, res) {
   Product.find({
     brand: req.query.brand
   }, function (err, products) {
@@ -99,4 +103,10 @@ app.get('/api/products/brand', function (req, res) {
   });
 })
 
+//app.use('/.netlify/lambda/index', router);
+app.use(router);
+
 app.listen(process.env.PORT || proxyPort, () => console.log(`Listening on port ${process.env.PORT || proxyPort}!`));
+
+module.exports = app;
+module.exports.handler = serverless(app);
