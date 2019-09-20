@@ -103,7 +103,8 @@ router.get('/api/products/brand', function (req, res) {
   });
 })
 
-//app.use('/.netlify/lambda/index', router);
+//t
+//app.use('/.netlify/functions/index', router);
 app.use(router);
 
 app.listen(process.env.PORT || proxyPort, () => console.log(`Listening on port ${process.env.PORT || proxyPort}!`));

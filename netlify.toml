@@ -1,2 +1,3 @@
 [build]
-  function = "./src/lambda"
+  function = "functions"
+  publish = "dist"

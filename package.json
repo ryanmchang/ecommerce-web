@@ -6,8 +6,8 @@
   "scripts": {
     "build": "run-p build:**",
     "build:app": "webpack --mode production",
-    "build:lambda": "netlify-lambda build src/lambda",
-    "start:lambda": "netlify-lambda serve src/lambda",
+    "build:lambda": "netlify-lambda build src/server",
+    "start:lambda": "netlify-lambda serve src/server",
     "start": "npm run build && node src/server/index.js",
     "client": "webpack-dev-server --mode development --devtool inline-source-map --hot",
     "server": "nodemon src/server/index.js",
@@ -22,7 +22,8 @@
     "nuka-carousel": "^4.5.9",
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
-    "serverless-http": "^2.3.0"
+    "serverless-http": "^2.3.0",
+    "netlify-lambda": "^1.6.3"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0",
@@ -42,7 +43,6 @@
     "file-loader": "^3.0.0",
     "html-webpack-plugin": "^3.2.0",
     "http-proxy-middleware": "^0.20.0",
-    "netlify-lambda": "^1.6.3",
     "node-sass": "^4.11.0",
     "nodemon": "^1.17.3",
     "npm-run-all": "^4.1.5",
