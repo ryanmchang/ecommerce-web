@@ -23,6 +23,7 @@ class AllHeadphones extends Component {
   }
 
   componentDidMount() {
+    this.handleScroll();
     window.addEventListener("scroll", this.handleScroll);
   }
 
@@ -75,7 +76,7 @@ class AllHeadphones extends Component {
         <CustomNavbar backgroundOn={true} ref={this.navbar}/>
         <button onClick={this.showFilter}>Filter</button>
         <div className="product-display" ref={this.productDisplay}>
-          <ProductFilter parentCallback={this.callbackItems} ref={this.filter}/>
+          <ProductFilter onClick={this.handleScroll} parentCallback={this.callbackItems} ref={this.filter}/>
           <div className="product-grid">
             { this.state.products.map(product =>
               <Item title={product.title} image={product.image} price={product.price} />
