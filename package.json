@@ -4,10 +4,7 @@
   "description": "Boilerplate to build a full stack web application using React, Node.js, Express and Webpack.",
   "main": "src/server/index.js",
   "scripts": {
-    "build": "run-p build:**",
-    "build:app": "webpack --mode production",
-    "build:lambda": "netlify-lambda build src/server",
-    "start:lambda": "netlify-lambda serve src/server",
+    "build": "webpack --mode production",
     "start": "npm run build && node src/server/index.js",
     "client": "webpack-dev-server --mode development --devtool inline-source-map --hot",
     "server": "nodemon src/server/index.js",
