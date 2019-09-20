@@ -58,10 +58,6 @@ module.exports = {
     proxy: {
       '/api': 'http://localhost:8888'
     }
-    // "/.netlify": {
-    //   target: "http://localhost:9000",
-    //   pathRewrite: { "^/.netlify/functions": "" }
-    // }
   },
   plugins: [
     new CleanWebpackPlugin([outputDirectory]),
